@@ -4,10 +4,10 @@ import quizQuestions from './api/quizQuestions';
 import update from 'react-addons-update';
 
 import Quiz from './components/Quiz';
-import Question from './components/Question';
+// import Question from './components/Question';
 import Result from './components/Result';
 
-import * as Icon from 'react-feather';
+// import * as Icon from 'react-feather';
 
 class App extends Component {
 
@@ -18,6 +18,7 @@ class App extends Component {
      counter: 0,
      questionId: 1,
      question: '',
+     illustration: '',
      answerOptions: [],
      answer: '',
      direction: '',
@@ -33,11 +34,13 @@ class App extends Component {
   }
 
   componentWillMount() {
-    const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
+
+    //const shuffledAnswerOptions = quizQuestions.map((question) => this.shuffleArray(question.answers));
 
     this.setState({
       question: quizQuestions[0].question,
-      answerOptions: shuffledAnswerOptions[0]
+      illustration: quizQuestions[0].illustration,
+      answerOptions: quizQuestions[0].answers
     });
   }
 
@@ -81,12 +84,16 @@ class App extends Component {
         counter: counter,
         questionId: questionId,
         question: quizQuestions[counter].question,
+        illustration: quizQuestions[counter].illustration,
         answerOptions: quizQuestions[counter].answers,
         answer: ''
       });
     }
 
   handleAnswerSelected(event) {
+
+      console.log("handleAnswerSelected", event);
+
 
       let dirAttr = event.currentTarget.getAttribute('data-direction');
       // HERE manipulate body class
@@ -95,6 +102,8 @@ class App extends Component {
         document.body.classList.remove('skip','up','down');
         document.body.classList.add(dirAttr);
       }
+
+      console.log( event.currentTarget.value );
 
       this.setUserAnswer(event.currentTarget.value);
 
@@ -131,7 +140,10 @@ class App extends Component {
         answer={this.state.answer}
         answerOptions={this.state.answerOptions}
         questionId={this.state.questionId}
+
         question={this.state.question}
+        illustration={this.state.illustration}
+
         questionTotal={quizQuestions.length}
         onAnswerSelected={this.handleAnswerSelected}
       />
@@ -147,9 +159,11 @@ class App extends Component {
   render() {
     return (
       <div className="app">
+          {/*
         <header className="app-header">
           <h1>Partifajten h1</h1>
         </header>
+            */}
 
         {this.state.result ? this.renderResult() : this.renderQuiz()}
         {/*

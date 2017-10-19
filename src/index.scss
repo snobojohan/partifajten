@@ -10,13 +10,17 @@ body {
   text-align: center;
 }
 
-body * {
+html {
   box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
 .app {
-  min-width: 280px;
-  max-width: 600px;
+  // min-width: 280px;
+  max-width: 367px;
   margin: 0 auto;
   padding: 0 10px;
   text-align: left;
@@ -35,6 +39,13 @@ h1, h2, h3, h4, h5 {
   @include font-smoothing;
 }
 
+.questionCount  {
+  @extend .text-meta;
+  display: block;
+  padding: 2em 0 1em 0;
+  text-align: right;
+}
+
 .text-large {
   font-size: 24px;
   line-height: 30px;
@@ -49,17 +60,53 @@ h1, h2, h3, h4, h5 {
 
 // END TYPOGRAPHY //
 
+.resultpage {
+    width: 100%;
+    padding-top: 2em;
+    text-align: center;
+}
+
+.resultLogo {
+  width: 75%;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+.spacer {
+  display: block;
+  height: 100px;
+}
+
+.cardWrapper {
+  width: 100%;
+  min-height: 355px;
+  overflow: visible;
+}
+
 .card {
      width: 100%;
-     min-height: 200px;
+     min-height: 350px;
      background: $svt-color_white;
      -webkit-transition: all 250ms;
      -moz-transition: all 250ms;
      transition: all 250ms;
      @include box_shadow(1);
 
+     h2 {
+       margin: 10px 10px 0 10px;
+       padding-bottom: 25px;
+     }
+
      p {
        padding: 8px;
+     }
+
+     img {
+       width: 100%;
+       max-width: 100%;
      }
  }
 
