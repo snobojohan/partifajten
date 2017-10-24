@@ -2,12 +2,20 @@
   "name": "partifajten",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://partifajten.firebaseapp.com/",
   "dependencies": {
+    "classnames": "^2.2.5",
+    "merge": "^1.2.0",
     "node-sass-chokidar": "^0.0.3",
     "npm-run-all": "^4.1.1",
+    "prop-types": "^15.6.0",
     "react": "^16.0.0",
+    "react-addons-css-transition-group": "^15.6.2",
+    "react-addons-update": "^15.6.2",
     "react-dom": "^16.0.0",
-    "react-scripts": "1.0.14"
+    "react-feather": "^1.0.7",
+    "react-scripts": "1.0.14",
+    "react-swipeable": "^4.1.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",
