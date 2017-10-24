@@ -251,6 +251,26 @@ h1, h2, h3, h4, h5 {
     -webkit-transform: scale(1.5);
     transform: scale(1.5); } }
 
+.resultGraphics {
+  padding: 2em; }
+
+.barWrapper {
+  width: 50%;
+  max-width: 300px;
+  background: #e6ebeb; }
+  .barWrapper--block {
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 100%;
+    background-color: #e6ebeb; }
+
+.bar {
+  background-color: #647378;
+  height: 0.5rem; }
+  .bar--block {
+    min-width: 2px;
+    height: 0.8rem; }
+
 /* Shared
 
 * {

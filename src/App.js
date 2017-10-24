@@ -46,15 +46,14 @@ class App extends Component {
 
   componentDidMount() {
 
-    if(window){
-      window.addEventListener('touchstart', function onFirstTouch() {
+      if(window){
 
-        // we could use a class
-        document.body.classList.remove('no-touching');
+        window.addEventListener( 'touchstart', function onFirstTouch() {
+          document.body.classList.remove('no-touching');
+          // we only need to know once that a human touched the screen
+          window.removeEventListener('touchstart', onFirstTouch, false);
+        }, false);
 
-        // we only need to know once that a human touched the screen, so we can stop listening now
-        window.removeEventListener('touchstart', onFirstTouch, false);
-      }, false);
     }
 
   }
@@ -90,25 +89,42 @@ class App extends Component {
       });
     }
 
-  handleAnswerSelected(event) {
+  handleAnswerSelected(event, xDistance, isFlick) {
 
-      console.log("handleAnswerSelected", event);
+      // console.log("handleAnswerSelected :: ", event,"====",xDistance,isFlick);
+
+      let dirAttr = '';
+
+      if(xDistance){
+        // This is a swipe
+
+        if(xDistance > 0) {
+          // LEFT
+          dirAttr = 'down';
+          this.setUserAnswer(event.currentTarget.getAttribute('data-down'));
+        } else {
+          // RIGHT
+          dirAttr = 'up';
+          this.setUserAnswer(event.currentTarget.getAttribute('data-up'));
+        }
+
+      } else {
+
+        dirAttr = event.currentTarget.getAttribute('data-direction');
+        this.setUserAnswer(event.currentTarget.value);
+
+      }
 
 
-      let dirAttr = event.currentTarget.getAttribute('data-direction');
-      // HERE manipulate body class
+      // Manipulate body class
       if(window){
         // Remove all direction classes
         document.body.classList.remove('skip','up','down');
         document.body.classList.add(dirAttr);
       }
 
-      console.log( event.currentTarget.value );
-
-      this.setUserAnswer(event.currentTarget.value);
-
       if (this.state.questionId < quizQuestions.length) {
-          setTimeout(() => this.setNextQuestion(), 300);
+          setTimeout(() => this.setNextQuestion(), 200);
         } else {
           setTimeout(() => this.setResults(this.getResults()), 300);
         }
@@ -127,7 +143,7 @@ class App extends Component {
           if (result.length === 1) {
             this.setState({ result: result[0] });
           } else {
-            this.setState({ result: 'Hmm... det går inte att skilja på dem. Rösta med hjärtat.' });
+            this.setState({ result: '... det går inte att avgöra. Du får använda din magkänsla.' });
           }
       }
 
@@ -152,7 +168,7 @@ class App extends Component {
 
   renderResult() {
     return (
-      <Result quizResult={this.state.result} />
+      <Result quizResultCount={this.state.answersCount} quizResult={this.state.result} />
     );
   }
 

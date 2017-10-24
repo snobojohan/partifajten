@@ -282,4 +282,29 @@ h1, h2, h3, h4, h5 {
 	}
 }
 
+/// RESULTS
+.resultGraphics {
+  padding: 2em;
+}
+.barWrapper {
+  width: 50%;
+  max-width: 300px;
+  background: $svt-color_cool-gray_extra-light;
+  &--block {
+    margin-bottom: 15px;
+    max-width: 100%;
+    width: 100%;
+    background-color: $svt-color_cool-gray_extra-light;
+  }
+}
+
+.bar {
+  background-color: $svt-color_cool-gray_dark;
+  height: 0.5rem;
+  &--block {
+    min-width: 2px;
+    height: 0.8rem;
+  }
+}
+
 @import 'styles/_quiz';

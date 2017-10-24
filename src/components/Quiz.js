@@ -23,7 +23,6 @@ function Quiz(props) {
       );
     }
 
-    console.log(props)
 
     const transProps = {
       /*
@@ -48,7 +47,7 @@ function Quiz(props) {
        />
        <div className="cardWrapper">
          <div className="card">
-           <Question content={props.question} illustration={props.illustration} />
+           <Question answerOptions={props.answerOptions} content={props.question} illustration={props.illustration} onAnswerSelected={props.onAnswerSelected} />
          </div>
       </div>
        <ul className="answerOptions">
