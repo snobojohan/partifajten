@@ -6,8 +6,15 @@ import update from 'react-addons-update';
 import Quiz from './components/Quiz';
 // import Question from './components/Question';
 import Result from './components/Result';
+import Prio from './components/Prio';
 
 // import * as Icon from 'react-feather';
+function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    var results = regex.exec(window.location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
 
 class App extends Component {
 
@@ -172,26 +179,27 @@ class App extends Component {
     );
   }
 
+  renderPrio() {
+    return (
+      <Prio foo="bar" />
+    );
+  }
+
   render() {
+
+    let compToRender = this.renderQuiz();
+
+    if(getUrlParameter('prio') === "true") {
+      compToRender = this.renderPrio();
+    } else if (this.state.result) {
+      compToRender = this.renderResult();
+    }
+
     return (
       <div className="app">
-          {/*
-        <header className="app-header">
-          <h1>Partifajten h1</h1>
-        </header>
-            */}
-
-        {this.state.result ? this.renderResult() : this.renderQuiz()}
-        {/*
-        <section>
-          <div>
-            <a href="#" className="btn btn--red btn--circular"><Icon.ThumbsDown size={40} strokeWidth={1} /></a>
-            <a href="#" className="btn btn--circular btn--circular--small"><Icon.CornerUpRight size={18} strokeWidth={1} /></a>
-            <a href="#" className="btn btn--circular btn--circular--small"><Icon.Heart size={18} strokeWidth={1} /></a>
-            <a href="#" className="btn btn--green btn--circular"><Icon.ThumbsUp size={40} strokeWidth={1} /></a>
-          </div>
-        </section>
-        */}
+        {
+          compToRender
+        }
       </div>
     );
   }

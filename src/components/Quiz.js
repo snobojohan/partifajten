@@ -34,8 +34,8 @@ function Quiz(props) {
      component: "div",
      transitionName: "fade", // HERE
      transitionEnterTimeout: 1800,
-     transitionLeaveTimeout: 1500,
-     transitionAppearTimeout: 1500
+     transitionLeaveTimeout: 1400,
+     transitionAppearTimeout: 1600
    };
 
     return (

@@ -19,7 +19,7 @@ html {
 }
 
 .app {
-  // min-width: 280px;
+  // min-width: 280px;_up
   max-width: 367px;
   margin: 0 auto;
   padding: 0 10px;
@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5 {
 }
 
 .resultLogo {
-  width: 75%;
+  width: 65%;
   margin: 0 auto;
   img {
     width: 100%;
@@ -124,6 +124,7 @@ h1, h2, h3, h4, h5 {
         border-color: transparent;
         background-color: $svt-color_gray_dark;
         color: $color-text-inverted;
+          @include box_shadow(1);
     }
 
     &--red {
@@ -159,7 +160,7 @@ h1, h2, h3, h4, h5 {
     height: 36px;
     line-height: 36px;
     padding: 0 2rem;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     vertical-align: middle;
     -webkit-tap-highlight-color: transparent;
 
@@ -283,6 +284,7 @@ h1, h2, h3, h4, h5 {
 }
 
 /// RESULTS
+
 .resultGraphics {
   padding: 2em;
 }
@@ -307,4 +309,49 @@ h1, h2, h3, h4, h5 {
   }
 }
 
+.anotherFight {
+  h2 {
+    margin-top: .5em;
+  }
+  p {
+    margin-bottom: 1em;
+  }
+}
+
 @import 'styles/_quiz';
+
+///// FORM ///
+.ntro {
+  font-size: 20px;
+  line-height: 26px;
+  margin: 1em 0;
+}
+.frm {
+  margin-top: 1em;
+}
+.lbl {
+  padding-left: 0.5em;
+  font-size: 16px;
+  &:after {
+     content: "\A";
+     white-space: p re;
+     display: block;
+     margin-bottom: 1em;
+  }
+}
+
+.cbox:checked + .lbl {
+  font-weight: bold;
+}
+
+.cbox:disabled + .lbl {
+  font-weight: normal;
+  color: #AAA;
+}
+.btn {
+  margin-right: 1em;
+}
+.btn-primary {
+  background-color: $svt-color_green_regular;
+  color: #FFF;
+}

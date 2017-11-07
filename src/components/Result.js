@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
   function Logo(props) {
 
@@ -26,9 +27,6 @@ import PropTypes from 'prop-types';
 
 
     if(!Number.isInteger(numVotes) || props.result === "Ingen"){
-
-
-
       return false;
     }
 
@@ -61,6 +59,27 @@ import PropTypes from 'prop-types';
 
   }
 
+
+  function AnotherFight(props){
+
+    console.log(props.result, props.result === "Moderaterna", props.result === "Socialdemokraterna");
+
+    if( !(props.result === "Moderaterna" || props.result === "Socialdemokraterna") ) {
+      return false;
+    }
+
+    return (
+      <div className="anotherFight">
+
+        <h2>Anta utmanaren!</h2>
+        <p>Dina svar matchar även ganska bra med <strong>Liberalerna</strong>. Gå en match till.</p>
+
+        <a href="./" className="btn btn--green">{props.result} vs. Liberalerna</a>
+
+      </div>
+    );
+  }
+
   function Result(props) {
 
     return (
@@ -72,6 +91,9 @@ import PropTypes from 'prop-types';
           Du tycker som <strong>{props.quizResult}</strong>
         </div>
         <ResultBar count={props.quizResultCount} result={props.quizResult} />
+
+        <AnotherFight result={props.quizResult} />
+
       </div>
     );
   }
